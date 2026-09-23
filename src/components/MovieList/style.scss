@@ -1,0 +1,54 @@
+.movie-list {
+    padding: 5px 4%;
+    margin-top: 8px;
+
+    .descricao-titulo {
+        color: #fff;
+        font-weight: bold;
+        text-align: center;
+        font-size: 15px;
+        margin: 3px;
+        padding: 3px;
+    }
+
+    .descricao-lancamento {
+        color: #fff;
+        text-align: center;
+        font-size: 15px;
+        margin: 3px;
+        padding: 3px;
+    }
+}
+
+.movie-grid {
+  display: flex;
+  flex-wrap: wrap;       /* Faz os filmes irem para a linha de baixo quando a tela acabar */
+  gap: 30px;             /* Espaçamento entre os filmes (horizontal e vertical) */
+  margin: 0;
+  padding: 30px;
+  justify-content: center; /* Opcional: centraliza a lista na tela se sobrar espaço */
+}
+
+.movie-card {
+  /* Define uma largura padrão para as imagens não ficarem gigantes */
+  width: 200px;
+}
+
+.image-card {
+  width: 100%;           /* Faz a imagem ocupar todo o tamanho do card (200px) */
+  height: auto;          /* Mantém a proporção correta da foto do filme */
+  border-radius: 8px;    /* Opcional: deixa as bordas arredondadas */
+  object-fit: cover;
+  cursor: pointer;
+  
+  /* Estado Inicial Importante */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Sombra bem leve inicial */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Suaviza a animação */
+}
+
+.image-card:hover {
+  transform: translateY(-5px); /* Eleva o item levemente para cima */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Sombra mais intensa e espalhada */
+  border-color: #3b82f6; /* Opcional: muda a cor da borda para destacar ainda mais */
+}
+
