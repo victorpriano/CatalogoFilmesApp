@@ -31,7 +31,7 @@
 
 .movie-card {
   /* Define uma largura padrão para as imagens não ficarem gigantes */
-  width: 200px;
+  width: 140px;
 }
 
 .image-card {
@@ -48,7 +48,37 @@
 
 .image-card:hover {
   transform: translateY(-5px); /* Eleva o item levemente para cima */
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Sombra mais intensa e espalhada */
-  border-color: #3b82f6; /* Opcional: muda a cor da borda para destacar ainda mais */
+  box-shadow: 0 5px 5px rgba(255, 255, 255, 0.8); /* Sombra mais intensa e espalhada */
+}
+
+.paginacao {
+  display: flex;
+  justify-content: center;
+
+  .texto-pagina {
+    color: #fff;
+    margin: 0 15px;
+    padding: 4px;
+  }
+
+  .botao-paginacao {
+    background-color: #010d23;
+    color: #fff;
+    cursor: pointer;
+    width: 60px;
+    border: none;
+    border-radius: 3px;
+    padding: 4px;
+    transition: background-color 0.3s ease;
+  }
+
+  .botao-paginacao:hover {
+    background-color: #fff;
+    color: #000;
+  }
+
+  .not-allowed {
+    cursor: not-allowed;
+  }
 }
 

@@ -14,17 +14,28 @@ type Filme = {
 export default function MovieList() {
 
     const [movies, setMovies] = useState<Filme[]>([])
+    const filmesPorPagina = 20;
+    const [paginaAtual, setPaginaAtual] = useState(1);
+    const [totalPaginas, setTotalPaginas] = useState(0);
+    const primeiraPagina = paginaAtual === 1;
+    const ultimaPagina = paginaAtual === totalPaginas;
 
-    useEffect(() => {
+    const getFilmes = () => {
         axios.get('https://api.themoviedb.org/3/discover/movie', {
             params: {
                 api_key: '2dd8947c5a49b1a2c14b328de043b358',
-                language: 'pt-BR'
+                language: 'pt-BR',
+                page: paginaAtual
             }
-        }).then((response) => setMovies(response.data.results))
-    }, [])
+        }).then((response) => {
+            setMovies(response.data.results)
+            setTotalPaginas(Math.ceil(response.data.total_pages / filmesPorPagina))
+        })
+    }
 
-    console.log(movies)
+    useEffect(() => {
+        getFilmes()
+    }, [getFilmes])
 
     function formatarData(dataAtual: string) {
         const [ano, mes, dia] = dataAtual.split('-')
@@ -52,8 +63,28 @@ export default function MovieList() {
                         )
                     }
                 </div>
+                      {/* Controles de Paginação */}
+                <div className='paginacao'>
+                    <button 
+                        disabled={primeiraPagina}
+                        className={primeiraPagina ? 'not-allowed' : 'botao-paginacao'}
+                        onClick={() => setPaginaAtual(prev => prev - 1)}
+                    >
+                    Anterior
+                    </button>
 
-                
+                    <span className='texto-pagina'>
+                    Página {paginaAtual} de {totalPaginas}
+                    </span>
+
+                    <button 
+                        disabled={ultimaPagina}
+                        className={ultimaPagina ? 'not-allowed' : 'botao-paginacao'}
+                        onClick={() => setPaginaAtual(prev => prev + 1)}
+                    >
+                    Próxima
+                    </button>
+                </div> 
             </div>
         </>
     )
