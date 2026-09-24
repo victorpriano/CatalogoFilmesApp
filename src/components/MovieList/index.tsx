@@ -20,10 +20,11 @@ export default function MovieList() {
     const primeiraPagina = paginaAtual === 1;
     const ultimaPagina = paginaAtual === totalPaginas;
 
+
     const getFilmes = () => {
-        axios.get('https://api.themoviedb.org/3/discover/movie', {
+        axios.get(import.meta.env.VITE_Api_Url, {
             params: {
-                api_key: '2dd8947c5a49b1a2c14b328de043b358',
+                api_key: import.meta.env.VITE_Api_Key,
                 language: 'pt-BR',
                 page: paginaAtual
             }
@@ -35,7 +36,7 @@ export default function MovieList() {
 
     useEffect(() => {
         getFilmes()
-    }, [getFilmes])
+    }, [paginaAtual])
 
     function formatarData(dataAtual: string) {
         const [ano, mes, dia] = dataAtual.split('-')
